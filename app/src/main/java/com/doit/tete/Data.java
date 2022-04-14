@@ -4,6 +4,7 @@ package com.doit.tete;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -38,7 +39,7 @@ public class Data {
     private Object udpateUserId;
     @SerializedName("devices")
     @Expose
-    private List<Device> devices = null;
+    private ArrayList<Device> devices = null;
 
     public Integer getId() {
         return id;
@@ -112,11 +113,11 @@ public class Data {
         this.udpateUserId = udpateUserId;
     }
 
-    public List<Device> getDevices() {
+    public ArrayList<Device> getDevices() {
         return devices;
     }
 
-    public void setDevices(List<Device> devices) {
+    public void setDevices(ArrayList<Device> devices) {
         this.devices = devices;
     }
 
