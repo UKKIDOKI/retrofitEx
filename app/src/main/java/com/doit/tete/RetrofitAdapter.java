@@ -18,6 +18,11 @@ public class RetrofitAdapter extends RecyclerView.Adapter<RetrofitAdapter.ViewHo
 
     private List<Device> items;
 
+
+    public RetrofitAdapter() {
+
+    }
+
     public RetrofitAdapter(List<Device> items) {
         this.items = items;
     }
