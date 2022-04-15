@@ -18,8 +18,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
-    private RetrofitAdapter mAdapter,mAdapter2,mAdapter3,mAdapter1;
-    private List<Device> items;
+    private RetrofitAdapter mAdapter, mAdapter2, mAdapter3, mAdapter1;
+    private ArrayList<Data.Device> items;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,36 +41,31 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<Data>> call, Response<List<Data>> response) {
                 if (response.isSuccessful()) {
-                        List<Data> data = response.body();
+                    ArrayList<Data> data = (ArrayList<Data>) response.body();
+                    Log.d("TEST", "성공성공");
+//                    Log.d("TEST", String.valueOf(data));
+
+                    List<ArrayList<Data.Device>> i = new ArrayList<ArrayList<Data.Device>>();
+                    i.add(data.get(0).getDevices());
+                    i.add(data.get(1).getDevices());
+                    i.add(data.get(2).getDevices());
+                    i.add(data.get(3).getDevices());
+                    Log.d("TEST", String.valueOf(i));
 
 
-                        //   data.add((Data) new Data().getDevices());
+                    mAdapter = new RetrofitAdapter(i);
+//                    mAdapter = new RetrofitAdapter(data.get(1).getDevices());
+//                    mAdapter2 = new RetrofitAdapter(data.get(2).getDevices());
+//                    mAdapter3 = new RetrofitAdapter(data.get(3).getDevices());
 
-                        //    data.add(data.get(2));
-                        //  data.add(data.get(3));
-
-                        Log.d("TEST", "성공성공");
-
-
-
-                       // mAdapter = new RetrofitAdapter(data.get(0).getDevices());
-                        mAdapter = new RetrofitAdapter(data.get(1).getDevices());
-                        mAdapter2 = new RetrofitAdapter(data.get(2).getDevices());
-                        mAdapter3 = new RetrofitAdapter(data.get(3).getDevices());
-                        //   mAdapter = new RetrofitAdapter(data.get(2).getDevices());
-
-                       // Object[] mAdapters = {mAdapter,mAdapter1,mAdapter2,mAdapter3};
-                        //    mAdapter = new RetrofitAdapter(data.get(1).getDevices());
-//                    mAdapter = new RetrofitAdapter(data.get(2).getDevices());
-//                    mAdapter = new RetrofitAdapter(data.get(3).getDevices());
-                        recyclerView.setAdapter(mAdapter);
+                    recyclerView.setAdapter(mAdapter);
 
 
                 }
             }
 
             @Override
-            public void onFailure(Call<List<Data>> call, Throwable t) {
+            public void onFailure(Call <List<Data>> call, Throwable t) {
                 t.printStackTrace();
             }
         });
