@@ -18,19 +18,15 @@ import java.util.List;
 
 public class RetrofitAdapter extends RecyclerView.Adapter<RetrofitAdapter.ViewHolder> {
 
+    // 데이터를 넘겨받을 리스트 생성
     private List<ArrayList<Data>> items;
 
-//    private List<ArrayList<Data>> items1;
-
-//    public RetrofitAdapter(List<ArrayList<Data>> items1) {
-//        this.items1 = items1;
-//    }
-
+    // 받아온 데이터를 클래스안에서 사용할수있게 생성자 추가
     public RetrofitAdapter(List<ArrayList<Data>> items) {
         this.items = items;
     }
 
-
+    // 만들어둔 아이템XML을 레이아웃 인플레이터 하고 뷰타입의 아이템뷰 변수에 저장후 리턴값으로는 뷰홀더 객체생성후 아이템뷰를 생성자로 전달
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -39,13 +35,13 @@ public class RetrofitAdapter extends RecyclerView.Adapter<RetrofitAdapter.ViewHo
 
     }
 
+    // 뷰홀더가 재생성 될때
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        ArrayList<Data> item = items.get(position);
-        Data i = item.get(position);
-        ArrayList<Device> y = i.getDevices();
-
-        // ArrayList<Data> item1 = items1.get(position);
+        ArrayList<Data> item = items.get(position); // 데이터클래스타입의 ArrayList item을 선언후 받아온 JSon데이터의 포지션값을 가져옴 // items는 0,1,2,3 총 4가지 값을 가지고있음
+        Data i = item.get(position); // Data타입의 i선언후 item의 포지션값을 가져옴
+        ArrayList<Device> y = i.getDevices(); // Device 타입의 ArrayList y를 선언후 i에 들어있는 Device배열을 가져옴
+        // 가져온 데이터들을 뷰에 셋팅
         holder.tv.setText(i.getCodeNm());
         holder.textView.setText(y.get(0).getDeviceDesc());
         holder.textView2.setText(y.get(0).getDeviceName());
@@ -58,33 +54,27 @@ public class RetrofitAdapter extends RecyclerView.Adapter<RetrofitAdapter.ViewHo
 
     @Override
     public int getItemCount() {
-       return items.size();
+        return items.size();
 
     }
 
-
-//    public void addItem(Data item) {               // 데이터를 가져와 arraylist에 저장할 메서드
-//    items.add(item);         //list안에 가져온 파라미터  추가
-//    }
-
-
+    // 뷰홀더클래스 생성후 리사이클러뷰홀더 상속
+    // 리사이클러뷰안의 뷰홀더 객체에 보여줄 데이터들
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        private TextView textView, textView2,tv;
+        // 뷰홀더에서 사용할 변수선언
+        private TextView textView, textView2, tv;
         private ImageView imageView;
 
+
+        // 아이템xml정보를 가진 아이템뷰를 받아와 각 뷰를 연결
         public ViewHolder(View itemView) {
             super(itemView);
             textView = itemView.findViewById(R.id.textView);
-               tv = itemView.findViewById(R.id.tv);
+            tv = itemView.findViewById(R.id.tv);
             textView2 = itemView.findViewById(R.id.textView2);
             imageView = itemView.findViewById(R.id.imageView);
         }
 
-//        public void setItem(Device item) {
-//            textView.setText(item.getDeviceName());
-//            textView2.setText(item.getDeviceDesc());
-//            // imageView.setText(item.getOpenDt());
-//        }
     }
 
 }

@@ -72,17 +72,7 @@ public class Device {
         this.deviceDesc = deviceDesc;
     }
 
-    @Override
-    public String toString() {
-        return "Device{" +
-                "id=" + id +
-                ", groupCode='" + groupCode + '\'' +
-                ", imageUrl='" + imageUrl + '\'' +
-                ", modelName='" + modelName + '\'' +
-                ", deviceName='" + deviceName + '\'' +
-                ", deviceDesc='" + deviceDesc + '\'' +
-                '}';
-    }
+
 }
 
 

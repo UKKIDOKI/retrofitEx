@@ -121,20 +121,5 @@ public class Data {
         this.devices = devices;
     }
 
-    @Override
-    public String toString() {
-        return "Data{" +
-                "id=" + id +
-                ", codeCls='" + codeCls + '\'' +
-                ", codeType='" + codeType + '\'' +
-                ", code='" + code + '\'' +
-                ", codeNm='" + codeNm + '\'' +
-                ", codeDesc='" + codeDesc + '\'' +
-                ", dispOrd='" + dispOrd + '\'' +
-                ", createUserId=" + createUserId +
-                ", udpateUserId=" + udpateUserId +
-                ", devices=" + devices +
-                '}';
-    }
 
 }
