@@ -18,14 +18,15 @@ import java.util.List;
 
 public class RetrofitAdapter extends RecyclerView.Adapter<RetrofitAdapter.ViewHolder> {
 
-    private List<ArrayList<Data.Device>> items;
+    private List<ArrayList<Data>> items;
+
 //    private List<ArrayList<Data>> items1;
 
 //    public RetrofitAdapter(List<ArrayList<Data>> items1) {
 //        this.items1 = items1;
 //    }
 
-    public RetrofitAdapter(List<ArrayList<Data.Device>> items) {
+    public RetrofitAdapter(List<ArrayList<Data>> items) {
         this.items = items;
     }
 
@@ -40,14 +41,17 @@ public class RetrofitAdapter extends RecyclerView.Adapter<RetrofitAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        ArrayList<Data.Device> item = items.get(position);
-       // ArrayList<Data> item1 = items1.get(position);
-       // holder.tv.setText(item1.get(0).getCodeNm());
-        holder.textView.setText(item.get(0).getDeviceDesc());
-        holder.textView2.setText(item.get(0).getDeviceName());
-        Log.d("Test", String.valueOf(item));
+        ArrayList<Data> item = items.get(position);
+        Data i = item.get(position);
+        ArrayList<Device> y = i.getDevices();
+
+        // ArrayList<Data> item1 = items1.get(position);
+        holder.tv.setText(i.getCodeNm());
+        holder.textView.setText(y.get(0).getDeviceDesc());
+        holder.textView2.setText(y.get(0).getDeviceName());
+
         Picasso.get()
-                .load(item.get(0).getImageUrl())
+                .load(y.get(0).getImageUrl())
                 .into(holder.imageView);
 
     }
@@ -71,7 +75,7 @@ public class RetrofitAdapter extends RecyclerView.Adapter<RetrofitAdapter.ViewHo
         public ViewHolder(View itemView) {
             super(itemView);
             textView = itemView.findViewById(R.id.textView);
-//            tv = itemView.findViewById(R.id.tv);
+               tv = itemView.findViewById(R.id.tv);
             textView2 = itemView.findViewById(R.id.textView2);
             imageView = itemView.findViewById(R.id.imageView);
         }

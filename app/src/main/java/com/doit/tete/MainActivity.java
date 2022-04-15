@@ -19,7 +19,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private RetrofitAdapter mAdapter, mAdapter2, mAdapter3, mAdapter1;
-    private ArrayList<Data.Device> items;
+    private ArrayList<Data> items;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,14 +43,20 @@ public class MainActivity extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     ArrayList<Data> data = (ArrayList<Data>) response.body();
                     Log.d("TEST", "성공성공");
-//                    Log.d("TEST", String.valueOf(data));
+                    Log.d("TEST", String.valueOf(data));
 
-                    List<ArrayList<Data.Device>> i = new ArrayList<ArrayList<Data.Device>>();
-                    i.add(data.get(0).getDevices());
-                    i.add(data.get(1).getDevices());
-                    i.add(data.get(2).getDevices());
-                    i.add(data.get(3).getDevices());
-                    Log.d("TEST", String.valueOf(i));
+                    List<ArrayList<Data>> i = new ArrayList<ArrayList<Data>>();
+
+
+                    i.add(data);
+                    i.add(data);
+                    i.add(data);
+                    i.add(data);
+//                    i.add(data.get(0).getDevices());
+//                    i.add(data.get(1).getDevices());
+//                    i.add(data.get(2).getDevices());
+//                    i.add(data.get(3).getDevices());
+                 //   Log.d("TEST", String.valueOf(i));
 
 
                     mAdapter = new RetrofitAdapter(i);
